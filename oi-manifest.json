@@ -1,0 +1,159 @@
+{
+  "server_name": "OI-stackoverflow-read-write-mcp",
+  "version": "1.0.0",
+  "intents": [
+    {
+      "keyword": "search by error",
+      "tool_name": "search_by_error",
+      "priority": 10
+    },
+    {
+      "keyword": "search stackoverflow error",
+      "tool_name": "search_by_error",
+      "priority": 10
+    },
+    {
+      "keyword": "find error solution",
+      "tool_name": "search_by_error",
+      "priority": 10
+    },
+    {
+      "keyword": "search by tags",
+      "tool_name": "search_by_tags",
+      "priority": 10
+    },
+    {
+      "keyword": "search stackoverflow tags",
+      "tool_name": "search_by_tags",
+      "priority": 10
+    },
+    {
+      "keyword": "find questions by tags",
+      "tool_name": "search_by_tags",
+      "priority": 10
+    },
+    {
+      "keyword": "analyze stack trace",
+      "tool_name": "analyze_stack_trace",
+      "priority": 10
+    },
+    {
+      "keyword": "stack trace analysis",
+      "tool_name": "analyze_stack_trace",
+      "priority": 10
+    },
+    {
+      "keyword": "find stack trace solution",
+      "tool_name": "analyze_stack_trace",
+      "priority": 10
+    },
+    {
+      "keyword": "post question",
+      "tool_name": "post_question",
+      "priority": 10
+    },
+    {
+      "keyword": "create question",
+      "tool_name": "post_question",
+      "priority": 10
+    },
+    {
+      "keyword": "ask question",
+      "tool_name": "post_question",
+      "priority": 10
+    },
+    {
+      "keyword": "post solution",
+      "tool_name": "post_solution",
+      "priority": 10
+    },
+    {
+      "keyword": "post answer",
+      "tool_name": "post_solution",
+      "priority": 10
+    },
+    {
+      "keyword": "answer question",
+      "tool_name": "post_solution",
+      "priority": 10
+    },
+    {
+      "keyword": "thumbs up",
+      "tool_name": "thumbs_up",
+      "priority": 10
+    },
+    {
+      "keyword": "upvote",
+      "tool_name": "thumbs_up",
+      "priority": 10
+    },
+    {
+      "keyword": "vote up",
+      "tool_name": "thumbs_up",
+      "priority": 10
+    },
+    {
+      "keyword": "comment solution",
+      "tool_name": "comment_solution",
+      "priority": 10
+    },
+    {
+      "keyword": "add comment",
+      "tool_name": "comment_solution",
+      "priority": 10
+    },
+    {
+      "keyword": "comment on question",
+      "tool_name": "comment_solution",
+      "priority": 10
+    }
+  ],
+  "parameter_extractors": {
+    "search_by_error": {
+      "OI-stackoverflow-read-write-mcp::search_by_error.errorMessage": "remove:search,by,error,for,find,solution",
+      "OI-stackoverflow-read-write-mcp::search_by_error.language": "regex:(?:language|lang|programming[\\s_-]?language)[\\s:]+([a-zA-Z]+)",
+      "OI-stackoverflow-read-write-mcp::search_by_error.technologies": "regex:(?:technologies?|tech|frameworks?|libraries?)[\\s:]+([^\\s]+(?:\\s*,\\s*[^\\s]+)*)",
+      "OI-stackoverflow-read-write-mcp::search_by_error.minScore": "regex:(?:min[\\s_-]?score|minimum[\\s_-]?score|score)[\\s:]+(\\d+)",
+      "OI-stackoverflow-read-write-mcp::search_by_error.includeComments": "regex:(?:include[\\s_-]?comments?|with[\\s_-]?comments?)[\\s:]+(true|false|yes|no)",
+      "OI-stackoverflow-read-write-mcp::search_by_error.responseFormat": "regex:(?:format|output[\\s_-]?format)[\\s:]+(json|markdown)",
+      "OI-stackoverflow-read-write-mcp::search_by_error.limit": "regex:(?:limit|max|maximum|results?)[\\s:]+(\\d+)"
+    },
+    "search_by_tags": {
+      "OI-stackoverflow-read-write-mcp::search_by_tags.tags": "remove:search,by,tags,for,find,questions",
+      "OI-stackoverflow-read-write-mcp::search_by_tags.minScore": "regex:(?:min[\\s_-]?score|minimum[\\s_-]?score|score)[\\s:]+(\\d+)",
+      "OI-stackoverflow-read-write-mcp::search_by_tags.includeComments": "regex:(?:include[\\s_-]?comments?|with[\\s_-]?comments?)[\\s:]+(true|false|yes|no)",
+      "OI-stackoverflow-read-write-mcp::search_by_tags.responseFormat": "regex:(?:format|output[\\s_-]?format)[\\s:]+(json|markdown)",
+      "OI-stackoverflow-read-write-mcp::search_by_tags.limit": "regex:(?:limit|max|maximum|results?)[\\s:]+(\\d+)"
+    },
+    "analyze_stack_trace": {
+      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.stackTrace": "remove:analyze,stack,trace,find,solution",
+      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.language": "regex:(?:language|lang|programming[\\s_-]?language)[\\s:]+([a-zA-Z]+)",
+      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.includeComments": "regex:(?:include[\\s_-]?comments?|with[\\s_-]?comments?)[\\s:]+(true|false|yes|no)",
+      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.responseFormat": "regex:(?:format|output[\\s_-]?format)[\\s:]+(json|markdown)",
+      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.limit": "regex:(?:limit|max|maximum|results?)[\\s:]+(\\d+)"
+    },
+    "post_question": {
+      "OI-stackoverflow-read-write-mcp::post_question.title": "regex:(?:title)[\\s:]+([^\\n]+)",
+      "OI-stackoverflow-read-write-mcp::post_question.body": "regex:(?:body|content|question[\\s_-]?body)[\\s:]+([^\\n]+(?:\\n[^\\n]+)*)",
+      "OI-stackoverflow-read-write-mcp::post_question.tags": "regex:(?:tags?)[\\s:]+([^\\s]+(?:\\s*,\\s*[^\\s]+)*)",
+      "OI-stackoverflow-read-write-mcp::post_question.errorSignature": "regex:(?:error[\\s_-]?signature|error[\\s_-]?summary)[\\s:]+([^\\n]+)",
+      "OI-stackoverflow-read-write-mcp::post_question.triedApproaches": "regex:(?:tried[\\s_-]?approaches?|attempted[\\s_-]?fixes?)[\\s:]+([^\\n]+(?:\\n[^\\n]+)*)"
+    },
+    "post_solution": {
+      "OI-stackoverflow-read-write-mcp::post_solution.questionId": "regex:(?:question[\\s_-]?id|question[\\s_-]?number)[\\s:]+(\\d+)",
+      "OI-stackoverflow-read-write-mcp::post_solution.body": "regex:(?:body|content|answer[\\s_-]?body)[\\s:]+([^\\n]+(?:\\n[^\\n]+)*)",
+      "OI-stackoverflow-read-write-mcp::post_solution.confirmedResolved": "regex:(?:confirmed[\\s_-]?resolved|resolved|fixed)[\\s:]+(true|false|yes|no)",
+      "OI-stackoverflow-read-write-mcp::post_solution.evidence": "regex:(?:evidence|proof|tests?|logs?)[\\s:]+([^\\n]+(?:\\n[^\\n]+)*)"
+    },
+    "thumbs_up": {
+      "OI-stackoverflow-read-write-mcp::thumbs_up.postId": "regex:(?:post[\\s_-]?id|post[\\s_-]?number|answer[\\s_-]?id|question[\\s_-]?id)[\\s:]+(\\d+)",
+      "OI-stackoverflow-read-write-mcp::thumbs_up.confirmedFixed": "regex:(?:confirmed[\\s_-]?fixed|fixed|resolved)[\\s:]+(true|false|yes|no)"
+    },
+    "comment_solution": {
+      "OI-stackoverflow-read-write-mcp::comment_solution.questionId": "regex:(?:question[\\s_-]?id|question[\\s_-]?number)[\\s:]+(\\d+)",
+      "OI-stackoverflow-read-write-mcp::comment_solution.body": "regex:(?:body|content|comment[\\s_-]?body)[\\s:]+([^\\n]+(?:\\n[^\\n]+)*)"
+    }
+  },
+  "reminder_message": "Stack Overflow MCP server with search and write capabilities. Write operations require STACKOVERFLOW_API_KEY and STACKOVERFLOW_ACCESS_TOKEN. All write tools have STRICT policies to prevent spam."
+}
+
