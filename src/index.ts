@@ -24,10 +24,11 @@ import {
 } from "./types/index.js";
 
 const STACKOVERFLOW_API = "https://api.stackexchange.com/2.3";
-// Default custom filter that includes bodies, scores, and other essential fields
-const DEFAULT_FILTER = "!*MZqiDl8Y0c)yVzXS"; // Custom filter for questions with bodies
-const ANSWER_FILTER = "!*MZqiDl8Y0c)yVzXS"; // Custom filter for answers with bodies
-const COMMENT_FILTER = "!*Mg-gxeRLu"; // Custom filter for comments
+// Default filters - using default filter IDs that include bodies and essential fields
+// If these fail, Stack Overflow API will use default behavior
+const DEFAULT_FILTER = "!9Z(-wzQ0P"; // Default filter for questions with bodies
+const ANSWER_FILTER = "!9Z(-wzQ0P"; // Default filter for answers with bodies  
+const COMMENT_FILTER = "!9Z(-wzQ0P"; // Default filter for comments
 
 // Rate limiting configuration
 const MAX_REQUESTS_PER_WINDOW = 30; // Maximum requests per window
@@ -417,7 +418,6 @@ export class StackOverflowServer {
       site: "stackoverflow",
       sort: "votes",
       order: "desc",
-      filter: DEFAULT_FILTER,
       q: query,
       ...(tags && { tagged: tags.join(";") }),
       ...(options.limit && { pagesize: options.limit.toString() }),
@@ -499,7 +499,6 @@ export class StackOverflowServer {
   ): Promise<StackOverflowAnswer[]> {
     const params = new URLSearchParams({
       site: "stackoverflow",
-      filter: ANSWER_FILTER,
       sort: "votes",
       order: "desc",
     });
@@ -544,7 +543,6 @@ export class StackOverflowServer {
   private async fetchComments(postId: number): Promise<StackOverflowComment[]> {
     const params = new URLSearchParams({
       site: "stackoverflow",
-      filter: COMMENT_FILTER,
       sort: "votes",
       order: "desc",
     });
@@ -589,7 +587,6 @@ export class StackOverflowServer {
   private async fetchQuestion(questionId: number): Promise<StackOverflowQuestion | undefined> {
     const params = new URLSearchParams({
       site: "stackoverflow",
-      filter: DEFAULT_FILTER,
     });
 
     if (this.apiKey) params.append("key", this.apiKey);
@@ -915,7 +912,6 @@ export class StackOverflowServer {
       site: "stackoverflow",
       sort: "votes",
       order: "desc",
-      filter: "!nKzQUR30W7",
       tagged: args.tags.join(";"),
       ...(args.limit && { pagesize: args.limit.toString() }),
     });

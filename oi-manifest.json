@@ -110,7 +110,7 @@
   ],
   "parameter_extractors": {
     "search_by_error": {
-      "OI-stackoverflow-read-write-mcp::search_by_error.errorMessage": "remove:search,by,error,for,find,solution",
+      "OI-stackoverflow-read-write-mcp::search_by_error.errorMessage": "remove:search,by,error,for,find,solution,language,lang|regex:(.+?)(?:\\s+language|\\s+lang|$)",
       "OI-stackoverflow-read-write-mcp::search_by_error.language": "regex:(?:language|lang|programming[\\s_-]?language)[\\s:]+([a-zA-Z]+)",
       "OI-stackoverflow-read-write-mcp::search_by_error.technologies": "regex:(?:technologies?|tech|frameworks?|libraries?)[\\s:]+([^\\s]+(?:\\s*,\\s*[^\\s]+)*)",
       "OI-stackoverflow-read-write-mcp::search_by_error.minScore": "regex:(?:min[\\s_-]?score|minimum[\\s_-]?score|score)[\\s:]+(\\d+)",
@@ -119,14 +119,14 @@
       "OI-stackoverflow-read-write-mcp::search_by_error.limit": "regex:(?:limit|max|maximum|results?)[\\s:]+(\\d+)"
     },
     "search_by_tags": {
-      "OI-stackoverflow-read-write-mcp::search_by_tags.tags": "remove:search,by,tags,for,find,questions",
+      "OI-stackoverflow-read-write-mcp::search_by_tags.tags": "remove:search,by,tags,for,find,questions|regex_all:\\b([a-zA-Z0-9]+)\\b",
       "OI-stackoverflow-read-write-mcp::search_by_tags.minScore": "regex:(?:min[\\s_-]?score|minimum[\\s_-]?score|score)[\\s:]+(\\d+)",
       "OI-stackoverflow-read-write-mcp::search_by_tags.includeComments": "regex:(?:include[\\s_-]?comments?|with[\\s_-]?comments?)[\\s:]+(true|false|yes|no)",
       "OI-stackoverflow-read-write-mcp::search_by_tags.responseFormat": "regex:(?:format|output[\\s_-]?format)[\\s:]+(json|markdown)",
       "OI-stackoverflow-read-write-mcp::search_by_tags.limit": "regex:(?:limit|max|maximum|results?)[\\s:]+(\\d+)"
     },
     "analyze_stack_trace": {
-      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.stackTrace": "remove:analyze,stack,trace,find,solution",
+      "OI-stackoverflow-read-write-mcp::analyze_stack_trace.stackTrace": "remove:analyze,stack,trace,find,solution,language,lang|regex:(.+?)(?:\\s+language|\\s+lang|$)",
       "OI-stackoverflow-read-write-mcp::analyze_stack_trace.language": "regex:(?:language|lang|programming[\\s_-]?language)[\\s:]+([a-zA-Z]+)",
       "OI-stackoverflow-read-write-mcp::analyze_stack_trace.includeComments": "regex:(?:include[\\s_-]?comments?|with[\\s_-]?comments?)[\\s:]+(true|false|yes|no)",
       "OI-stackoverflow-read-write-mcp::analyze_stack_trace.responseFormat": "regex:(?:format|output[\\s_-]?format)[\\s:]+(json|markdown)",
